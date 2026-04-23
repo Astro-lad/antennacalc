@@ -12,6 +12,15 @@ class Antenna(models.Model):
     detail = models.TextField()
     image = models.ImageField(upload_to='images/', null=True, blank=True)
 
+    def save(self, *args, **kwargs):
+        if self.image and hasattr(self.image, "file"):
+            uploaded_url = upload_file(self.image)
+
+            # replace local file with Supabase URL
+            self.image = uploaded_url
+
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return self.name
 
