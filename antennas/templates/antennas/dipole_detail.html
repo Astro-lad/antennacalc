@@ -1,0 +1,30 @@
+{% extends "antennas/base_detail.html" %}
+{% block calculations %}
+    <h2>Dipole Designer</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label>Frequency</label>
+        <div class="freq-input">
+            {{ form.frequency }}
+            {{ form.unit }}
+        </div>
+        <button type="submit">Design</button>
+    </form>
+    {% if result %}
+        <div class="results">
+            <h3>Results</h3>
+            <p>
+                <strong>Total Length:</strong> {{ result.total_length }} m
+            </p>
+            <p>
+                <strong>Arm Length:</strong> {{ result.arm_length }} m
+            </p>
+            <p>
+                <strong>Gain:</strong> {{ result.gain }} dBi
+            </p>
+            <p>
+                <strong>Resistance:</strong> {{ result.radiation_resistance }} Ω
+            </p>
+        </div>
+    {% endif %}
+{% endblock %}

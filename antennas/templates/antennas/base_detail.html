@@ -1,0 +1,167 @@
+{% extends "antennas/base.html" %}
+{% block content %}
+    <style>
+/* ===== Page Layout ===== */
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* ===== Header ===== */
+.header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.header h1 {
+    font-size: 32px;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+/* ===== Top Info Section ===== */
+.top-card {
+    background: #f8fafc;
+    padding: 25px;
+    border-radius: 16px;
+    margin-bottom: 25px;
+}
+
+.top-card img {
+    display: block;
+    margin: 0 auto 20px;
+    border-radius: 12px;
+    max-width: 350px;
+}
+
+.top-card p {
+    font-size: 15px;
+    color: #334155;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* ===== Bottom Layout ===== */
+.bottom-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 25px;
+}
+
+/* ===== Cards (no hard borders) ===== */
+.card {
+    background: #f8fafc;
+    padding: 20px;
+    border-radius: 16px;
+}
+
+/* ===== Form ===== */
+
+form label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #1e293b;   /* darker = visible */
+}
+form input,
+form select {
+    height: 50px;
+    font-size: 15px;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+}
+
+/* Standard inputs */
+form input {
+    width: 100%;
+    padding: 0 12px;
+    border-radius: 12px;
+    background: #e5e7eb;
+}
+
+/* ===== Frequency input (FIXED) ===== */
+.freq-input {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #e5e7eb;
+}
+
+.freq-input input {
+    flex: 1;
+    padding: 0 12px;
+    border: none;
+    background: transparent;
+    height: 100%;
+}
+
+.freq-input select {
+    width: 90px;
+    padding: 0 10px;
+    border: none;
+    background: #d1d5db;
+    cursor: pointer;
+    height: 100%;
+}
+
+/* Button */
+form button {
+    margin-top: 15px;
+    width: 100%;
+    height: 50px;
+    border-radius: 12px;
+    border: none;
+    background: #3b82f6;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background: #2563eb;
+}
+
+/* ===== Results ===== */
+.results p {
+    margin: 6px 0;
+    color: #1e293b;
+}
+
+/* ===== Pattern Image ===== */
+.pattern img {
+    width: 100%;
+    border-radius: 12px;
+}
+    </style>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>{{ antenna.name }}</h1>
+        </div>
+        <!-- TOP: Image + Description -->
+        <div class="top-card">
+            {% if antenna.image %}<img src="{{ antenna.image.url }}" alt="{{ antenna.name }}">{% endif %}
+            <p>{{ antenna.detail }}</p>
+        </div>
+        <!-- BOTTOM: Calculations + Pattern -->
+        <div class="bottom-grid">
+            <!-- LEFT: Calculations -->
+            <div class="card">
+                {% block calculations %}{% endblock %}
+            </div>
+            <!-- RIGHT: Radiation Pattern -->
+            <div class="card pattern">
+                {% if pattern_url %}
+                    <img src="{{ pattern_url }}" alt="Radiation Pattern">
+                {% else %}
+                    <p></p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

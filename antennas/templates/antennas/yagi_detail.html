@@ -1,0 +1,41 @@
+{% extends "antennas/base_detail.html" %}
+{% block calculations %}
+    <h2>Yagi Designer</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label>Elements</label>
+        {{ form.elements }}
+        <label>Frequency</label>
+        <div class="freq-input">
+            {{ form.frequency }}
+            {{ form.unit }}
+        </div>
+        <button type="submit">Design</button>
+    </form>
+    {% if result %}
+        <div class="results">
+            <h3>Results</h3>
+            <p>
+                <strong>Gain:</strong> {{ result.gain }} dBi
+            </p>
+            <p>
+                <strong>Wavelength:</strong> {{ result.wavelength }} m
+            </p>
+            <p>
+                <strong>Reflector Length:</strong> {{ result.reflector_length }} m
+            </p>
+            <p>
+                <strong>Driven Element:</strong> {{ result.driven_length }} m
+            </p>
+            <p>
+                <strong>Director Lengths:</strong>
+            </p>
+            <ul>
+                {% for d in result.directors %}<li>{{ d }} m</li>{% endfor %}
+            </ul>
+            <p>
+                <strong>Spacing:</strong> {{ result.director_spacing }} m
+            </p>
+        </div>
+    {% endif %}
+{% endblock %}
