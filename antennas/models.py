@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from .supabase_storage import upload_file
 
 class Antenna(models.Model):
     ANTENNA_TYPES = [
