@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-a$-f6)=$(5-#h%9chhldtc$q_3-(j5cd1w6h(sfmf5(4c1fi)%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['antennacalc.onrender.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
