@@ -11,7 +11,8 @@ class Antenna(models.Model):
     name = models.CharField(max_length=100)
     type = models.CharField(max_length=20, choices=ANTENNA_TYPES)
     detail = models.TextField()
-    image = models.ImageField(upload_to='images/', null=True, blank=True)
+    image = models.URLField()
+#    image = models.ImageField(upload_to='images/', null=True, blank=True)
 
     def save(self, *args, **kwargs):
         if self.image and hasattr(self.image, "file"):
