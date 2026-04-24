@@ -1,6 +1,6 @@
 {% extends "antennas/base_detail.html" %}
 {% block calculations %}
-    <h2>Spiral Designer</h2>
+    <h2 style="color:black;">Spiral Designer</h2>
     <form method="post">
         {% csrf_token %}
         <label>Lowest Frequency</label>
@@ -17,7 +17,7 @@
     </form>
     {% if result %}
         <div class="results">
-            <h3>Results</h3>
+            <h3 style="color:black;">Results</h3>
             <p>
                 <strong>Outer Radius:</strong> {{ result.outer_radius }} m
             </p>
@@ -33,7 +33,7 @@
         </div>
     {% endif %}
     {% if shape_url %}
-        <h3>Spiral Geometry</h3>
+        <h3 style="color:black;">Spiral Geometry</h3>
         <img src="{{ shape_url }}" width = "400">
     {% endif %}
 {% endblock %}

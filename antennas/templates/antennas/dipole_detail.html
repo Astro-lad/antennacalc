@@ -1,6 +1,6 @@
 {% extends "antennas/base_detail.html" %}
 {% block calculations %}
-    <h2>Dipole Designer</h2>
+    <h2 style="color:black;">Dipole Designer</h2>
     <form method="post">
         {% csrf_token %}
         <label>Frequency</label>
@@ -12,7 +12,7 @@
     </form>
     {% if result %}
         <div class="results">
-            <h3>Results</h3>
+            <h3 style = "color:black;">Results</h3>
             <p>
                 <strong>Total Length:</strong> {{ result.total_length }} m
             </p>
